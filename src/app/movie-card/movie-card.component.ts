@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
+// API calls
 import {
   GetAllMovies,
   AddFavoriteMovie,
@@ -33,9 +35,16 @@ export class MovieCardComponent {
   ) { }
 
   ngOnInit(): void {
+    /**
+     * Call functions on page load to retrieve all movies from database
+     */
     this.getMovies();
   }
 
+  /**
+   * Function that retrieves list of all movies from database
+   * @returns movies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -44,6 +53,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Function that adds movie to user's list of favorites
+   * @param id type: number - Movie ID
+   * @param Title type: string - Movie Title
+   */
   addToFavorites(id: string, Title: string): void {
     this.fetchApiDataFavorite.addFavoriteMovie(id).subscribe((resp: any) => {
       // console.log(resp);
@@ -54,7 +68,12 @@ export class MovieCardComponent {
     });
   }
 
-
+  /**
+   * Function to open dialog showing movie details
+   * @param Description type: string - Movie description
+   * @param Image type: string - Path to movie image
+   * @param Title type: string - Movie title
+   */
   openDetailsDialog(Description: string, Image: string, Title: string): void {
     this.dialog.open(MovieDetailsComponent, {
       data: { Description, Image, Title },
@@ -63,6 +82,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+ * Function to open dialog showing genre details
+ * @param Name type: string - Name of genre
+ * @param Description type: string - Description of genre
+ */
   openGenreDialog(Name: string, Description: string): void {
     this.dialog.open(GenreComponent, {
       data: { Name, Description },
@@ -71,6 +95,12 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+ * Function to open dialog showing director details
+ * @param Name type: string - Name of director
+ * @param Bio type: string - Director bio
+ * @param Birth type: string - Year director was born
+ */
   openDirectorDialog(Name: string, Bio: string, Birth: string): void {
     this.dialog.open(DirectorComponent, {
       data: { Name, Bio, Birth },
@@ -79,6 +109,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+ * Function to delete a movie from user's list of favourites
+ * @param id type: string - ID of movie to be deleted from favourites
+ * @param Title type: string - Title of movie to be deleted from favourites
+ */
   deleteFavoriteMovie(id: string): void {
     this.fetchApiDataDeleteFavorite
       .deleteFavoriteMovie(id)

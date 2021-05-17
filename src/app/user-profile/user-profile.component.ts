@@ -41,7 +41,12 @@ export class UserProfileComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
 
-
+  /**
+   * Function that retrieves list of all movies from database
+   * then checks for favorite movie ids against this list.
+   * If a match, movie is pushed to favoriteMovies array.
+   * @returns favoriteMovies
+   */
   getMovies(): void {
     this.fetchApiDataAllMovies.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -54,6 +59,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+ * Function that deletes a movie from user's list of favourites.
+ * @param id type: string - ID of movie to be deleted from favorites
+ */
   deleteFavoriteMovie(id: string): void {
     this.fetchApiDataDeleteFavorite
       .deleteFavoriteMovie(id)
@@ -63,6 +72,9 @@ export class UserProfileComponent implements OnInit {
       });
   }
 
+  /**
+   * Function that allows the user to update their profile information
+   */
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe(
       (result) => {
@@ -82,6 +94,12 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  /**
+ * Function to open dialog showing movie details
+ * @param Description type: string - Movie description
+ * @param Image type: string - Path to movie image
+ * @param Title type: string - Movie title
+ */
   openDetailsDialog(Description: string, Image: string): void {
     this.dialog.open(MovieDetailsComponent, {
       data: { Description, Image },
@@ -90,6 +108,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+ * Function to open dialog showing genre details
+ * @param Name type: string - Name of genre
+ * @param Description type: string - Description of genre
+ */
   openGenreDialog(Name: string, Description: string): void {
     this.dialog.open(GenreComponent, {
       data: { Name, Description },
@@ -98,6 +121,12 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+ * Function to open dialog showing director details
+ * @param Name type: string - Name of director
+ * @param Bio type: string - Director bio
+ * @param BirthYear type: string - Year director was born
+ */
   openDirectorDialog(Name: string, Bio: string, BirthYear: string): void {
     this.dialog.open(DirectorComponent, {
       data: { Name, Bio, BirthYear },

@@ -4,11 +4,16 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-//Declaring the api url that will provide data for the client app
+/**
+ * Declaration of the API URL that will provide data for the client app
+ */
 const apiUrl = 'https://mycfdb.herokuapp.com/';
 
 
-//USER REGISTRATION
+/**
+ * API call to user registration endpoint
+ * @param userDetails
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +43,10 @@ export class UserRegistrationService {
   }
 }
 
-// USER LOGIN
+/**
+ * API call to user login endpoint
+ * @param userDetails
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -47,6 +55,10 @@ export class UserLoginService {
   constructor(private http: HttpClient) { }
 
   // Making the API call for the login endpoint
+  /**
+   *
+   * @param userDetails
+   */
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
@@ -66,7 +78,9 @@ export class UserLoginService {
   }
 }
 
-// GET ALL MOVIES
+/**
+ * API call to get all movies endpoint
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -104,7 +118,9 @@ export class GetAllMovies {
   }
 }
 
-// GET ONE MOVIE
+/**
+ * API call to get one endpoint
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -142,7 +158,9 @@ export class GetOneMovie {
   }
 }
 
-// GET DIRECTOR
+/**
+ * API call to get director endpoint
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -180,7 +198,9 @@ export class GetDirector {
   }
 }
 
-// GET GENRE
+/**
+ * API call to get genre endpoint
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -218,7 +238,10 @@ export class GetGenre {
   }
 }
 
-// GET USER
+/**
+ * API call to get user endpoint
+ * @param username
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -256,7 +279,10 @@ export class GetUser {
   }
 }
 
-// ADD MOVIE TO LIST OF FAVOURITES
+/**
+ * API call to add movie to list of favourites endpoint
+ * @param id
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -298,7 +324,10 @@ export class AddFavoriteMovie {
   }
 }
 
-// EDIT USER
+/**
+ * API call to edit user endpoint
+ * @param userData
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -336,7 +365,9 @@ export class EditUser {
   }
 }
 
-// DELETE USER
+/**
+ * API call to delete user endpoint
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -374,7 +405,10 @@ export class DeleteUser {
   }
 }
 
-// DELETE MOVIE FROM LIST OF FAVOURITES
+/**
+ * API call to delete movie from favourites endpoint
+ * @param id
+ */
 @Injectable({
   providedIn: 'root',
 })
